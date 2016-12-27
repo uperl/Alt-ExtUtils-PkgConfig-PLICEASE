@@ -89,7 +89,6 @@ sub static_libs
 {
   my(undef, $modulename) = @_;
   my $package = _find($modulename);
-  $DB::single = 1;
   defined $package ? $package->libs . $package->libs_private : undef;
 }
 
