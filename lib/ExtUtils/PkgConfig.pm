@@ -132,35 +132,44 @@ sub cflags_only_I
 {
   my(undef, $modulename) = @_;
   my $package = _find($modulename);
-  join(' ', map { _escape $_ } grep { $_->type eq 'I' } $package->list_cflags) . ' ';
+  $package ? join(' ', map { _escape $_ } grep { $_->type eq 'I' } $package->list_cflags) . ' ' : undef;
 }
 
 sub cflags_only_other
 {
   my(undef, $modulename) = @_;
   my $package = _find($modulename);
-  join(' ', map { _escape $_ } grep { $_->type ne 'I' } $package->list_cflags) . ' ';
+  $package ? join(' ', map { _escape $_ } grep { $_->type ne 'I' } $package->list_cflags) . ' ' : undef;
 }
 
 sub libs_only_L
 {
   my(undef, $modulename) = @_;
   my $package = _find($modulename);
-  join(' ', map { _escape $_ } grep { $_->type eq 'L' } $package->list_libs) . ' ';
+  $package ? join(' ', map { _escape $_ } grep { $_->type eq 'L' } $package->list_libs) . ' ' : undef;
 }
 
 sub libs_only_l
 {
   my(undef, $modulename) = @_;
   my $package = _find($modulename);
-  join(' ', map { _escape $_ } grep { $_->type eq 'l' } $package->list_libs) . ' ';
+  $package ? join(' ', map { _escape $_ } grep { $_->type eq 'l' } $package->list_libs) . ' ' : undef;
 }
 
 sub libs_only_other
 {
   my(undef, $modulename) = @_;
   my $package = _find($modulename);
-  join(' ', map { _escape $_ } grep { $_->type ne 'L' && $_->type ne 'l' } $package->list_libs) . ' ';
+  $package ? join(' ', map { _escape $_ } grep { $_->type ne 'L' && $_->type ne 'l' } $package->list_libs) . ' ' : undef;
+}
+
+sub variable
+{
+  my(undef, $modulename, $key) = @_;
+  my $package = _find($modulename);
+  my $value;
+  $value = $package->variable($key) if $package;
+  $value;
 }
 
 # the "create_version_macros" and "write_version_macros" and the documentation
