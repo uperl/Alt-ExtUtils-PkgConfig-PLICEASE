@@ -22,6 +22,23 @@ C<libpkgconf> but not C<pkg-config>, then this module may be of use to you.  In 
 the environment variable C<PERL_ALT_INSTALL> to C<OVERWRITE>.  For further rationale and details on this and other
 "Alternative" implementation modules see L<Alt>.
 
+Here are some differences between my version and the original:
+
+=over 4
+
+=item no forking
+
+Because this implementation uses a library instead of a program to query the C<.pc> file database, this version does
+not need to use C<fork> or C<system>.
+
+=item no C<AUTOLOAD>
+
+This version doesn't use C<AUTOLOAD>.  As a result, dashed versions of the methods (C<cflags-only-I>) are not supported.
+You must use the underscore methods (C<cflags_only_I>).  As the dashed versions were probably unintentional that is
+probably okay.
+
+=back
+
 =head1 SEE ALSO
 
 =over 4

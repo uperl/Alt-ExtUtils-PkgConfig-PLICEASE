@@ -18,6 +18,19 @@ That being said, all effort has been made to make this module correct, and if yo
 the environment variable `PERL_ALT_INSTALL` to `OVERWRITE`.  For further rationale and details on this and other
 "Alternative" implementation modules see [Alt](https://metacpan.org/pod/Alt).
 
+Here are some differences between my version and the original:
+
+- no forking
+
+    Because this implementation uses a library instead of a program to query the `.pc` file database, this version does
+    not need to use `fork` or `system`.
+
+- no `AUTOLOAD`
+
+    This version doesn't use `AUTOLOAD`.  As a result, dashed versions of the methods (`cflags-only-I`) are not supported.
+    You must use the underscore methods (`cflags_only_I`).  As the dashed versions were probably unintentional that is
+    probably okay.
+
 # SEE ALSO
 
 - [Alt](https://metacpan.org/pod/Alt)
