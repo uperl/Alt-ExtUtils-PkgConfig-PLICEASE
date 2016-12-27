@@ -82,14 +82,15 @@ sub libs
 {
   my(undef, $modulename) = @_;
   my $package = _find($modulename);
-  defined $package ? $package->cflags : undef;
+  defined $package ? $package->libs : undef;
 }
 
 sub static_libs
 {
   my(undef, $modulename) = @_;
   my $package = _find($modulename);
-  defined $package ? $package->cflags . $package->cflags_private : undef;
+  $DB::single = 1;
+  defined $package ? $package->libs . $package->libs_private : undef;
 }
 
 sub _compare_version
@@ -101,7 +102,7 @@ sub atleast_version
 {
   my(undef, $modulename, $version) = @_;
   my $package = _find($modulename);
-  $package && (_compare_version($version, $package->version) >= 0 )
+  $package && (_compare_version($version, $package->version) <= 0 )
   ? 1 : undef;
 }
 
@@ -117,7 +118,7 @@ sub max_version
 {
   my(undef, $modulename, $version) = @_;
   my $package = _find($modulename);
-  $package && (_compare_version($version, $package->version) <= 0 )
+  $package && (_compare_version($version, $package->version) >= 0 )
   ? 1 : undef;
 }
 
@@ -146,21 +147,21 @@ sub libs_only_L
 {
   my(undef, $modulename) = @_;
   my $package = _find($modulename);
-  join(' ', map { _escape $_ } grep { $_->type eq 'L' } $package->list_cflags) . ' ';
+  join(' ', map { _escape $_ } grep { $_->type eq 'L' } $package->list_libs) . ' ';
 }
 
 sub libs_only_l
 {
   my(undef, $modulename) = @_;
   my $package = _find($modulename);
-  join(' ', map { _escape $_ } grep { $_->type eq 'l' } $package->list_cflags) . ' ';
+  join(' ', map { _escape $_ } grep { $_->type eq 'l' } $package->list_libs) . ' ';
 }
 
 sub libs_only_other
 {
   my(undef, $modulename) = @_;
   my $package = _find($modulename);
-  join(' ', map { _escape $_ } grep { $_->type ne 'L' && $_->type ne 'l' } $package->list_cflags) . ' ';
+  join(' ', map { _escape $_ } grep { $_->type ne 'L' && $_->type ne 'l' } $package->list_libs) . ' ';
 }
 
 # the "create_version_macros" and "write_version_macros" and the documentation
