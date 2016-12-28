@@ -220,9 +220,9 @@ sub create_version_macros {
 #define $stem\_MINOR_VERSION ($modversion[1])
 #define $stem\_MICRO_VERSION ($modversion[2])
 #define $stem\_CHECK_VERSION(major,minor,micro) \\
-	($stem\_MAJOR_VERSION > (major) || \\
-	 ($stem\_MAJOR_VERSION == (major) && $stem\_MINOR_VERSION > (minor)) || \\
-	 ($stem\_MAJOR_VERSION == (major) && $stem\_MINOR_VERSION == (minor) && $stem\_MICRO_VERSION >= (micro)))
+         ($stem\_MAJOR_VERSION > (major) || \\
+         ($stem\_MAJOR_VERSION == (major) && $stem\_MINOR_VERSION > (minor)) || \\
+         ($stem\_MAJOR_VERSION == (major) && $stem\_MINOR_VERSION == (minor) && $stem\_MICRO_VERSION >= (micro)))
 __EOD__
     }
   }

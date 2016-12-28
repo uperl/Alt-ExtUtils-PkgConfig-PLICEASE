@@ -13,8 +13,8 @@ require 't/swallow_stderr.inc';
 $ENV{PKG_CONFIG_PATH} = './t/';
 
 sub contains {
-	my ($string, $sub_string) = @_;
-	return -1 != index ($string, $sub_string);
+  my ($string, $sub_string) = @_;
+  return -1 != index ($string, $sub_string);
 }
 
 my $macros;
@@ -40,18 +40,18 @@ ok (contains ($macros, 'TEST_MICRO_VERSION (0)'));
 ok (contains ($macros, 'TEST_CHECK_VERSION'));
 
 swallow_stderr (sub {
-	eval {
-		ExtUtils::PkgConfig->create_version_macros (qw/__bad__/, 'BAD');
-	};
-	ok ($@);
+  eval {
+    ExtUtils::PkgConfig->create_version_macros (qw/__bad__/, 'BAD');
+  };
+  ok ($@);
 });
 
 my $header = 'eupc_test_tmp.h';
 
 ExtUtils::PkgConfig->write_version_macros (
-	$header,
-	'test_glib-2.0' => 'GLIB',
-	'test_non_numeric' => 'TEST');
+  $header,
+  'test_glib-2.0' => 'GLIB',
+  'test_non_numeric' => 'TEST');
 
 ok (-f $header);
 ok (open my $fh, '<', $header);
@@ -68,14 +68,14 @@ close $fh;
 unlink $header;
 
 swallow_stderr (sub {
-	eval {
-	  ExtUtils::PkgConfig->write_version_macros (
-		$header,
-		'__bad__' => 'BAD');
-	};
-	ok ($@);
+  eval {
+    ExtUtils::PkgConfig->write_version_macros (
+    $header,
+    '__bad__' => 'BAD');
+  };
+  ok ($@);
 });
 
 if (-f $header) {
-	unlink $header;
+  unlink $header;
 }
