@@ -89,7 +89,7 @@ sub static_libs
 {
   my(undef, $modulename) = @_;
   my $package = _find($modulename);
-  defined $package ? $package->libs . $package->libs_private : undef;
+  defined $package ? $package->libs_static : undef;
 }
 
 sub _compare_version
