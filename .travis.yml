@@ -5,10 +5,11 @@ addons:
   apt:
     packages:
       - liblzma-dev
+
 install:
   - perlbrew list
-  - dzil authordeps --missing | cpanm -n
-  - dzil listdeps   --missing | cpanm -n
+  - dzil authordeps --missing | cpanm -n -v
+  - dzil listdeps   --missing | cpanm -n -v
 
 perl:
   - "5.14"
