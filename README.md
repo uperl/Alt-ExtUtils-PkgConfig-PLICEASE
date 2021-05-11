@@ -1,10 +1,12 @@
-# Alt::ExtUtils::PkgConfig::PLICEASE [![Build Status](https://secure.travis-ci.org/plicease/Alt-ExtUtils-PkgConfig-PLICEASE.png)](http://travis-ci.org/plicease/Alt-ExtUtils-PkgConfig-PLICEASE)
+# Alt::ExtUtils::PkgConfig::PLICEASE ![linux](https://github.com/plicease/Alt-ExtUtils-PkgConfig-PLICEASE/workflows/linux/badge.svg)
 
 Simplistic interface to pkgconf (like pkg-config)
 
 # SYNOPSIS
 
-    env PERL_ALT_INSTALL=OVERWRITE cpanm Alt::ExtUtils::PkgConfig::PLICEASE
+```
+env PERL_ALT_INSTALL=OVERWRITE cpanm Alt::ExtUtils::PkgConfig::PLICEASE
+```
 
 # DESCRIPTION
 
@@ -48,4 +50,6 @@ This software is Copyright (c) 2016 by Graham Ollis.
 
 This is free software, licensed under:
 
-    The GNU Lesser General Public License, Version 2.1, February 1999
+```
+The GNU Lesser General Public License, Version 2.1, February 1999
+```
