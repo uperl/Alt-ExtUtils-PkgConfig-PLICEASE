@@ -1,2 +1,4 @@
 /Alt-ExtUtils-PkgConfig-PLICEASE-*
 /.build
+*.old
+*.orig
